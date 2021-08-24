@@ -1,0 +1,57 @@
+{% extends 'Blog/home.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    .error {
+        color: red;
+    }
+
+    input:not(.btn) {
+        width: 500px;
+    }
+
+    label {
+        font-size: 20px;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+<div class="col-sm-10">
+    <h2 class="text-white my-5">Registration</h2>
+    {% if success %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h5> {{ success }} </h5>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <form action="" method="POST" NOVALIDATE>
+        {% csrf_token %}
+        <table class="form-group">
+            <tr>
+                <td><strong> {{ register.username.label_tag }} </strong> <br> {{ register.username }}  <span class="error">{{ register.username.errors | striptags }}</span></td>
+            </tr>
+            <tr>
+                <td><strong> {{ register.first_name.label_tag }} </strong> <br> {{ register.first_name }} <span class="error">{{ register.first_name.errors | striptags }}</span></td>
+            </tr>
+            <tr>
+                <td><strong> {{ register.last_name.label_tag }} </strong> <br> {{ register.last_name }} <span class="error">{{ register.last_name.errors | striptags }}</span></td>
+            </tr>
+            <tr>
+                <td><strong> {{ register.email.label_tag }} </strong> <br> {{ register.email }} <span class="error">{{ register.email.errors | striptags }}</span></td>
+            </tr>
+            <tr>
+                <td><strong> {{ register.password1.label_tag }} </strong> <br> {{ register.password1 }} <span class="error">{{ register.password1.errors | striptags }}</span></td>
+            </tr>
+            <tr>
+                <td><strong> {{ register.password2.label_tag }} </strong> <br> {{ register.password2 }} <span class="error">{{ register.password2.errors | striptags }}</span></td>
+            </tr>
+        </table>
+        <input class="btn btn-danger mt-2 font-weight-bold" type="reset" value="Clear">
+        <input class="btn btn-primary mt-2 font-weight-bold mx-2" type="submit" value="Register">
+    </form>
+</div>
+{% endblock content %}

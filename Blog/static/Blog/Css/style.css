@@ -1,0 +1,16 @@
+body {
+    background-color: rgb(75, 73, 73);
+    color: antiquewhite;
+}
+
+.jumbotron {
+    background-color: rgb(94, 86, 86);
+}
+
+.navbar-brand {
+    font-size: 30px;
+}
+
+.nav-link {
+    font-size: 25px;
+}

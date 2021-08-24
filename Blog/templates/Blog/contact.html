@@ -1,0 +1,45 @@
+{% extends 'Blog/home.html' %} {% load static %} {% block content %}
+<div class="col-sm-10">
+    <h3 class="text-white my-5">Contact Page</h3>
+    <form class="container" action="">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" class="form-control" id="first-name" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" class="form-control" id="last-name" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group>
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="number">Mobile Number</label>
+                    <input type="number" class="form-control" id="number"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label> <br>
+            <textarea name="address" id="address" cols="120" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label> <br>
+            <textarea name="message" id="message" cols="120" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form> <br>
+</div>
+{% endblock content %}

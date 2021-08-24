@@ -1,0 +1,46 @@
+{% extends 'Blog/home.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    .error {
+        color: red;
+    }
+
+    input:not(.btn) {
+        width: 500px;
+    }
+
+    label {
+        font-size: 20px;
+    }
+</style>
+{% endblock style %}
+{% block content %}
+<div class="col-sm-10">
+    <h1 class="text-white mt-5 mb-4">Login</h1>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <h6> {{ message }} <strong>Please Login!!</strong> </h6>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <form action="" method="POST" NOVALIDATE>
+        {% csrf_token %}
+        <span class="error">{{ login.non_field_errors | striptags }} </span>
+        <table class="form-group">
+            <tr>
+                <td><strong>{{ login.username.label_tag }}</strong> <br> {{ login.username }} <span class="error">{{ login.username.errors | striptags }}</span></td>
+            </tr>
+            <tr>
+                <td><strong>{{ login.password.label_tag }}</strong> <br> {{ login.password }} <span class="error">{{ login.password.errors | striptags }}</span></td>
+            </tr>
+        </table>
+        <input class="btn btn-primary mx-1" type="submit" value="Login">
+    </form>
+</div>
+{% endblock content %}

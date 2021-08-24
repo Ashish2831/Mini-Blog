@@ -1,0 +1,38 @@
+{% extends 'Blog/home.html' %}
+{% load static %}
+
+{% block style %}
+    <style>
+        .error {
+            color: red;
+        }
+        input:not(.btn) {
+            width: 600px;
+        }
+    </style>
+{% endblock style %}
+{% block content %}
+    <div class="com-sm-10">
+        <h3 class="text-white my-5">Dashboard / Update Post</h3>
+         {% if success %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <h5> {{ success }} </h5>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        <form action="" method="POST" NOVALIDATE>
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td> <strong> {{ post_form.title.label_tag }} </strong> <br> {{ post_form.title }} <span class="error">{{ post_form.title.errors | striptags}}</span></td>
+                </tr>
+                <tr>
+                    <td> <strong> {{ post_form.description.label_tag }} </strong> <br> {{ post_form.description }} <span class="error">{{ post_form.description.errors | striptags}}</span></td>
+                </tr>
+            </table>
+            <input class="btn btn-success mt-2 mx-1" type="submit" value="Update">
+        </form>
+    </div>
+{% endblock content %}

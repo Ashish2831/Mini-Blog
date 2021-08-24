@@ -1,0 +1,68 @@
+{% extends 'Blog/home.html' %}
+{% load static %}
+
+{% block side %}
+<div class="col-sm-2 text-white my-5 text-center">
+    <h4 class="my-5">Profile</h4>
+    <h5>{{ full_name }}</h5>
+    {% for group in groups %}
+    <p>{{ group.name }}</p>
+    {% endfor %}
+</div>
+{% endblock side %}
+
+{% block content %}
+<div class="col-sm-10">
+    <h1 class="text-white my-5">Dashboard</h1>
+    <a class="btn btn-success" href="{% url 'AddPost' %}">Add Post</a>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+        <h5> {{ message }} </h5>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% if posts %}
+    <h1 class="text-center alert-info mt-3 p-2">Information of Posts</h1>
+    <table class="table table-hover bg-white">
+        <tr class="text-center">
+            <th scope="col" style="width: 2%;">Id</th>
+            <th scope="col" style="width: 28%;">Title</th>
+            <th scope="col" style="width: 55%;">Description</th>
+            <th scope="col" style="width: 15%;">Action</th>
+        </tr>
+        {% for post in posts %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ post.title }}</td>
+            <td style="text-align: justify;">{{ post.description }}</td>
+            <td class="text-center">
+                <a href="{% url 'UpdatePost' post.id %}" class="btn btn-warning btn-sm">Edit</a>
+                {% if perms.Blog.delete_post %}
+                <form action="{% url 'DeletePost' post.id %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger btn-sm delete" value="Delete">
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+    $(document).ready(function (event) {
+        $(".delete").click(function (event) {
+            if (!confirm("Are you sure you want to delete this post?")) {
+                event.preventDefault();
+            };
+        });
+    });
+</script>
+{% endblock script %}
